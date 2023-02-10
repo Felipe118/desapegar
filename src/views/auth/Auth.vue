@@ -80,36 +80,57 @@
         Copyright © 2020. All rights reserved.
       </div>
       <!-- Copyright -->
-    </div>
+    </div> 
   </section>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity';
+import { useStore } from 'vuex';
 export default {
+  name: 'Auth',
   setup() {
-
+    const store = useStore() 
     const email = ref("")
     const password = ref("")
+
+
+  const auth = () => {
+    loading.value = true
+    store.dispatch('auth', {
+        email: email.value,
+        password: password.value,
+        device_name: 'vue3_web'
+    })
+    .then(() => router.push({name: 'campus.home'}))
+    .catch(error => console.log(error))
+    .finally(() =>   loading.value = false)
+  }
+
+  return {
+          auth,
+          email,
+          password,
+      }
   },
 };
 </script>
 
 
 <style>
-.divider:after,
-.divider:before {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #eee;
-}
-.h-custom {
-  height: calc(100% - 73px);
-}
-@media (max-width: 450px) {
-  .h-custom { 
-    height: 100%;
+  .divider:after,
+  .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
   }
+  .h-custom {
+    height: calc(100% - 73px);
+  }
+  @media (max-width: 450px) {
+    .h-custom { 
+      height: 100%;
+    }
 }
 </style>
