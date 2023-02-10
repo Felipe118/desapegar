@@ -1,14 +1,32 @@
-import { createStore } from 'vuex'
+import AuthService from "@/services/auth.service"
 
-export default createStore({
+export default {
   state: {
+    user: {
+        name: '',
+        email: '',
+    },
+    loggedIn: false
   },
   getters: {
   },
   mutations: {
+      SET_USER (state,user){
+        state.user = user
+        state.loggedIn = true
+      },
+      LOGOUT (state){
+          state.user = {
+              name: '',
+              email: '',
+          }
+          state.loggedIn = false
+      }
   },
   actions: {
-  },
-  modules: {
-  }
-})
+    auth({state},params){
+      state.loggedIn
+      return AuthService.auth(params)
+    }
+  },  
+}
