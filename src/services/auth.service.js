@@ -7,7 +7,7 @@ export default class AuthService extends BaseService {
 
       return new Promise((resolve,reject) => {
         this.request()
-            .post('/auth', params)
+            .post('/login', params)
             .then(response => {
               localStorage.setItem(TOKEN_NAME, response.data.token)
                 resolve(response)

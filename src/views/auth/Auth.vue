@@ -16,6 +16,7 @@
                 <label class="form-label" for="form3Example3">Email</label>
               <input
                 type="email"
+                v-model="email"
                 id="form3Example3"
                 class="form-control form-control-lg"
                 placeholder="E-mail"
@@ -29,6 +30,7 @@
               <label class="form-label" for="form3Example4">Password</label>
               <input
                 type="password"
+                v-model="password"
                 id="form3Example4"
                 class="form-control form-control-lg"
                 placeholder="Senha"
@@ -52,9 +54,9 @@
             </div>
 
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-dark btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem">
+              <button type="button" @click.prevent="auth" class="btn btn-dark btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem">
                 Login
-              </button>
+              </button> 
               <p class="small fw-bold mt-2 pt-1 mb-0">
                 Não tem conta ?
                 <a href="#!" class="link-danger">Registre-se</a>
@@ -85,6 +87,7 @@
 </template>
 
 <script>
+import router from '@/router';
 import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
 export default {
@@ -95,19 +98,18 @@ export default {
     const password = ref("")
 
 
-  const auth = () => {
-    loading.value = true
-    store.dispatch('auth', {
-        email: email.value,
-        password: password.value,
-        device_name: 'vue3_web'
-    })
-    .then(() => router.push({name: 'campus.home'}))
-    .catch(error => console.log(error))
-    .finally(() =>   loading.value = false)
-  }
+    const auth = () => {
+      // loading.value = true
+      store.dispatch('auth', {
+          email: email.value,
+          password: password.value,
+      })
+      .then(() => router.push({name: 'index'}))
+      .catch(error => console.log(error))
+      // .finally(() =>   loading.value = false)
+    }
 
-  return {
+      return {
           auth,
           email,
           password,

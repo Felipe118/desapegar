@@ -5,7 +5,7 @@ export default class BaseService {
         this.instance = new BaseService
     }
 
-    static  request(status = {auth: false}){
+    static request(status = {auth: false}){
         return new Http(status)
     }
 } 
