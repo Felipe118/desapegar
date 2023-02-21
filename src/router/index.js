@@ -6,9 +6,10 @@ const routes = [
     name: 'index',
     component: () => import('@/layout/BaseTemplate.vue'),
    },
-   {
+   { 
       path: '/register',
       name: 'register',
+      component: () => import('@/views/register/Register.vue')
       
    },
    {

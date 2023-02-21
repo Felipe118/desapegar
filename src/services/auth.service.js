@@ -16,4 +16,16 @@ export default class AuthService extends BaseService {
       })
     }
 
+    static async register(params) {
+      return new Promise((resolve,reject) => {
+        this.request()
+        .post('/register', params)
+            .then(response => {
+                console.log(response)
+                resolve(response)
+            })
+            .catch(error => reject(error.response))
+      })
+    }
+
 } 

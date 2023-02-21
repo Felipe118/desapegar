@@ -10,7 +10,12 @@
           />
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <h3 class="mb-4">Registrar</h3>
           <form>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3">Nome</label>
+                <input type="text" v-model="name" class="form-control form-control-lg" placeholder="Nome"/>
+            </div>
 
             <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3">Email</label>
@@ -18,19 +23,19 @@
             </div>
             <!-- Email input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">Email</label>
-                <input type="email" v-model="email" class="form-control form-control-lg" placeholder="E-mail"/>
+                <label class="form-label" for="form3Example3">Telefone</label>
+                <input type="text" v-model="phone" class="form-control form-control-lg" placeholder="Telefone"/>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example4">Password</label>
+                <label class="form-label" for="form3Example4">Senha</label>
                 <input type="password" v-model="password" class="form-control form-control-lg" placeholder="Senha"/>
             </div>
 
 
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" @click.prevent="auth" class="btn btn-dark btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem">
+              <button type="button" @click.prevent="register" class="btn btn-dark btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem">
                 Registrar-se
               </button>
             </div>
@@ -38,20 +43,10 @@
         </div>
       </div>
     </div>
-    <div
-      class="
-        d-flex
-        flex-column 
-        text-center text-md-start
-        justify-content-between
-        py-4
-        px-4 px-xl-5
-        bg-light
-      "
-    >
+    <div class="d-flex flex-column text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-light">
       <!-- Copyright -->
-      <div style="text-align: center;" class="text-dark mb-3 mb-md-0">
-        Copyright © 2020. All rights reserved.
+      <div style="text-align: center;" class="text-dark footer mb-3 mb-md-0">
+        Copyright © 2023. All rights reserved Desapegar.
       </div>
       <!-- Copyright -->
     </div> 
@@ -59,11 +54,48 @@
 </template>
 
 <script>
-    
+import { ref } from 'vue';
+import { useStore } from 'vuex'
+    export default {
+      name:'Register',
+
+      setup() {
+        const store = useStore();
+        const email = ref("");
+        const password = ref("");
+        const phone = ref("");
+        const name = ref("");
+
+        const register = () => {
+          store.dispatch('register',{
+            email: email.value,
+            password: password.value,
+            phone: phone.value,
+            name: name.value,
+          })
+          .then((response) => {
+            console.log(response)
+            console.log('response')
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+
+         
+        }
+         return {
+            register,
+            email,
+            password,
+            name,
+            phone
+          }
+      },
+    };
 </script>
 
 
-<style>
+<style> 
   .divider:after,
   .divider:before {
     content: "";
@@ -78,5 +110,10 @@
     .h-custom { 
       height: 100%;
     }
-}
+  }
+  @media (max-width: 450px) {
+    .h-custom { 
+      height: 100%;
+    }
+  }
 </style>

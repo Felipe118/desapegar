@@ -9,7 +9,8 @@ export default {
         name: '',
         email: '',
     },
-    loggedIn: false
+    loggedIn: false,
+
   },
   getters: {
   },
@@ -30,7 +31,8 @@ export default {
     auth({state},params){
       state.loggedIn
       return AuthService.auth(params)
-    }
+    },
+
   },  
   modules: {
    
