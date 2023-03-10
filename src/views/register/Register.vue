@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex'
     export default {
       name:'Register',
@@ -67,7 +67,7 @@ import { useStore } from 'vuex'
         const name = ref("");
 
         const register = () => {
-          store.dispatch('register',{
+          store.dispatch('register', {
             email: email.value,
             password: password.value,
             phone: phone.value,
@@ -78,7 +78,8 @@ import { useStore } from 'vuex'
             console.log('response')
           })
           .catch((error) => {
-            console.log(error)
+            console.log(error) 
+            console.log('erro')
           })
 
          

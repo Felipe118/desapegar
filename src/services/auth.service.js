@@ -6,6 +6,7 @@ export default class AuthService extends BaseService {
     static async auth (params) {
 
       return new Promise((resolve,reject) => {
+        console.log(params)
         this.request()
             .post('/login', params)
             .then(response => {
@@ -15,13 +16,15 @@ export default class AuthService extends BaseService {
             .catch(error => reject(error.response))
       })
     }
-
+ 
     static async register(params) {
       return new Promise((resolve,reject) => {
+        console.log(params)
         this.request()
         .post('/register', params)
             .then(response => {
                 console.log(response)
+                console.log('register service')
                 resolve(response)
             })
             .catch(error => reject(error.response))
