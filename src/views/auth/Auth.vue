@@ -38,18 +38,6 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-center">
-              <!-- Checkbox -->
-              <div class="form-check mb-0">
-                <input
-                  class="form-check-input me-2"
-                  type="checkbox"
-                  value=""
-                  id="form2Example3"
-                />
-                <label class="form-check-label" for="form2Example3">
-                  Remember me
-                </label>
-              </div>
               <a href="#!" class="text-body">Esqueceu a senha ?</a>
             </div>
 
@@ -66,23 +54,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="
-        d-flex
-        flex-column 
-        text-center text-md-start
-        justify-content-between
-        py-4
-        px-4 px-xl-5
-        bg-light
-      "
-    >
-      <!-- Copyright -->
-      <div style="text-align: center;" class="text-dark mb-3 mb-md-0">
-        Copyright © 2020. All rights reserved.
-      </div>
-      <!-- Copyright -->
-    </div> 
+    <footer-auth/>
   </section>
 </template>
 
@@ -90,6 +62,9 @@
 import router from '@/router';
 import { ref } from '@vue/reactivity';
 import { useStore } from 'vuex';
+
+import FooterAuth from '../components/FooterAuth.vue';
+
 export default {
   name: 'Auth',
   setup() {
@@ -97,7 +72,7 @@ export default {
     const email = ref("")
     const password = ref("")
 
-
+ 
     const auth = () => {
       // loading.value = true
       store.dispatch('auth', {
@@ -115,6 +90,10 @@ export default {
           password,
       }
   },
+
+  components: {
+    FooterAuth
+  }
 };
 </script>
 

@@ -43,56 +43,58 @@
         </div>
       </div>
     </div>
-    <div class="d-flex flex-column text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-light">
-      <!-- Copyright -->
-      <div style="text-align: center;" class="text-dark footer mb-3 mb-md-0">
-        Copyright © 2023. All rights reserved Desapegar.
-      </div>
-      <!-- Copyright -->
-    </div> 
+    <footer-auth/>
+
   </section>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
-import { useStore } from 'vuex'
-    export default {
-      name:'Register',
+  import { ref } from '@vue/reactivity';
+  import { useStore } from 'vuex'
+  import FooterAuth from '../components/FooterAuth.vue';
 
-      setup() {
-        const store = useStore();
-        const email = ref("");
-        const password = ref("");
-        const phone = ref("");
-        const name = ref("");
+  export default {
 
-        const register = () => {
-          store.dispatch('register', {
-            email: email.value,
-            password: password.value,
-            phone: phone.value,
-            name: name.value,
-          })
-          .then((response) => {
-            console.log(response)
-            console.log('response')
-          })
-          .catch((error) => {
-            console.log(error) 
-            console.log('erro')
-          })
+    components: {
+      FooterAuth
+    },
 
-         
+    name:'Register',
+
+    setup() {
+      const store = useStore();
+      const email = ref("");
+      const password = ref("");
+      const phone = ref("");
+      const name = ref("");
+
+      const register = () => {
+        store.dispatch('register', {
+          email: email.value,
+          password: password.value,
+          phone: phone.value,
+          name: name.value,
+        })
+        .then((response) => {
+          console.log(response)
+          console.log('response') 
+        })
+        .catch((error) => {
+          console.log(error) 
+          console.log('erro')
+        })
+
+        
+      }
+        return {
+          register,
+          email,
+          password,
+          name,
+          phone
         }
-         return {
-            register,
-            email,
-            password,
-            name,
-            phone
-          }
-      },
-    };
+    },
+  };
 </script>
 
 
